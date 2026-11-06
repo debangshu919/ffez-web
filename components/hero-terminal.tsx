@@ -99,7 +99,7 @@ function TerminalPrompt({
   return (
     <div className={className ?? "flex flex-wrap items-center gap-2"}>
       <span className="text-emerald-400 font-medium select-none">
-        debangshu@macbook
+        user@macbook
       </span>
       <span className="text-blue-400 select-none">{dir}</span>
       <span className="text-zinc-500 select-none">%</span>
