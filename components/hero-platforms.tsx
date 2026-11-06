@@ -68,7 +68,7 @@ export function HeroPlatforms() {
     <div className="w-full border-t border-border bg-background/80">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 w-full min-h-[58px] sm:min-h-[64px] lg:min-h-[68px]">
         {/* Leading Context Label */}
-        <div className="col-span-2 sm:col-span-3 md:col-span-1 flex flex-col justify-center px-4 py-3 sm:px-5 border-b md:border-b-0 md:border-r border-border bg-card/20 select-none">
+        <div className="col-span-2 sm:col-span-3 md:col-span-1 flex flex-row flex-wrap md:flex-col items-center justify-center text-center md:items-start md:text-left px-4 py-2.5 sm:py-3 sm:px-5 gap-x-1.5 border-b md:border-b-0 md:border-r border-border bg-card/20 select-none">
           <span className="text-[11px] sm:text-xs font-sans font-medium text-foreground/90 tracking-tight leading-snug">
             Target presets &
           </span>
