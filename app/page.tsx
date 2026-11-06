@@ -1,69 +1,76 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Crosshair } from "@/components/crosshair";
+import { DiagonalHatch } from "@/components/diagonal-hatch";
+import { HeroCommandPill } from "@/components/hero-command-pill";
+import { HeroPreview } from "@/components/hero-preview";
+import { HeroPlatforms } from "@/components/hero-platforms";
+import { GITHUB_DOCS_URL } from "@/lib/constants";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <div className="w-full relative flex-1 flex flex-col">
+      {/* Main Framed Hero Text Container Continuous with Navbar Guidelines */}
+      <main className="mx-auto max-w-6xl relative border-x border-border flex-1 w-full flex flex-col items-center justify-center px-4 sm:px-6 pt-16 sm:pt-20 md:pt-24 pb-16 sm:pb-20 border-b border-border">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+          {/* Eyebrow: Interactive Cargo Install Pill with CAD Corner Brackets */}
+          <HeroCommandPill />
+
+          {/* Hero Headline */}
+          <h1 className="mt-6 sm:mt-8 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-semibold tracking-tight text-foreground leading-[1.12]">
+            Never look up FFmpeg flags again.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          {/* Hero Subheadline */}
+          <p className="mt-5 sm:mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl text-center leading-relaxed font-sans">
+            Stop searching Stack Overflow for{" "}
+            <code className="text-foreground/90 bg-muted/60 px-1 py-0.5 rounded-none font-mono text-[0.9em] border border-border/50">
+              -vn
+            </code>{" "}
+            and{" "}
+            <code className="text-foreground/90 bg-muted/60 px-1 py-0.5 rounded-none font-mono text-[0.9em] border border-border/50">
+              -c:v copy
+            </code>{" "}
+            flags.{" "}
+            <span className="text-foreground font-medium">ffez</span> gives you
+            human-readable commands for stripping audio, converting tracks, and
+            formatting clips.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+          {/* Hero CTA Action Buttons */}
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+            <Link
+              href="#commands"
+              className="w-full sm:w-auto inline-flex h-10 items-center justify-center rounded-none bg-primary px-6 text-sm font-medium text-primary-foreground shadow-xs transition-all hover:bg-primary/90 active:scale-[0.98]"
+            >
+              Get Started
+            </Link>
+
+            <Link
+              href={GITHUB_DOCS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex h-10 items-center justify-center rounded-none border border-border bg-card/60 px-6 text-sm font-medium text-foreground transition-all hover:bg-muted/80 active:scale-[0.98]"
+            >
+              Documentation
+            </Link>
+          </div>
         </div>
       </main>
+
+      {/* Hero Preview Section (Green Animated Canvas + Interactive CLI Terminal) */}
+      <section className="w-full border-b border-border bg-background relative">
+        <div className="mx-auto max-w-6xl relative border-x border-border">
+          <HeroPreview />
+          <HeroPlatforms />
+
+          {/* End of Section: '-' markers */}
+          <Crosshair type="minus" className="-bottom-[7px] -left-[7px]" />
+          <Crosshair type="minus" className="-bottom-[7px] -right-[7px]" />
+        </div>
+      </section>
+
+      {/* Bottom Diagonal Striped Hatched Bar with Extended Horizontal Line */}
+      <DiagonalHatch />
     </div>
   );
 }
