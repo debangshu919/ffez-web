@@ -2,11 +2,11 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDiscord,
-  faGithub,
+  faInstagram,
   faXTwitter,
   faYoutube,
   faSlack,
-  faReddit,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import { cn } from "@/lib/utils";
 
@@ -27,10 +27,10 @@ const TARGET_PLATFORMS: readonly PlatformTarget[] = [
     wordmarkClassName: "font-semibold tracking-tight",
   },
   {
-    name: "GitHub",
-    spec: "Zero-audio PR screencasts & issue bug clips",
-    icon: faGithub,
-    wordmarkText: "GitHub",
+    name: "Instagram",
+    spec: "Reels & Stories 9:16 auto-fit export",
+    icon: faInstagram,
+    wordmarkText: "Instagram",
     wordmarkClassName: "font-semibold tracking-tight",
   },
   {
@@ -55,11 +55,11 @@ const TARGET_PLATFORMS: readonly PlatformTarget[] = [
     wordmarkClassName: "font-bold tracking-tight lowercase",
   },
   {
-    name: "Reddit",
-    spec: "Community video feeds & compressed clips",
-    icon: faReddit,
-    wordmarkText: "reddit",
-    wordmarkClassName: "font-bold tracking-tight lowercase",
+    name: "WhatsApp",
+    spec: "--target whatsapp (<16MB chat & status video limit)",
+    icon: faWhatsapp,
+    wordmarkText: "WhatsApp",
+    wordmarkClassName: "font-semibold tracking-tight",
   },
 ];
 

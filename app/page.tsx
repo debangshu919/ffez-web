@@ -4,6 +4,7 @@ import { DiagonalHatch } from "@/components/diagonal-hatch";
 import { HeroCommandPill } from "@/components/hero-command-pill";
 import { HeroPreview } from "@/components/hero-preview";
 import { HeroPlatforms } from "@/components/hero-platforms";
+import { RotatingText } from "@/components/ui/rotating-text";
 import { GITHUB_DOCS_URL } from "@/lib/constants";
 
 export default function Home() {
@@ -16,24 +17,23 @@ export default function Home() {
           <HeroCommandPill />
 
           {/* Hero Headline */}
-          <h1 className="mt-6 sm:mt-8 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-semibold tracking-tight text-foreground leading-[1.12]">
-            Never look up FFmpeg flags again.
+          <h1 className="mt-6 sm:mt-8 font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-semibold tracking-tight text-foreground leading-[1.15]">
+            One simple command for any video you need to{" "}
+            <RotatingText
+              texts={["mute.", "compress.", "trim.", "convert."]}
+              effect="blur"
+              mainClassName="text-primary font-mono inline-flex align-baseline"
+              staggerDuration={0.025}
+              rotationInterval={2500}
+            />
           </h1>
 
           {/* Hero Subheadline */}
           <p className="mt-5 sm:mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl text-center leading-relaxed font-sans">
-            Stop searching Stack Overflow for{" "}
-            <code className="text-foreground/90 bg-muted/60 px-1 py-0.5 rounded-none font-mono text-[0.9em] border border-border/50">
-              -vn
-            </code>{" "}
-            and{" "}
-            <code className="text-foreground/90 bg-muted/60 px-1 py-0.5 rounded-none font-mono text-[0.9em] border border-border/50">
-              -c:v copy
-            </code>{" "}
-            flags.{" "}
+            Clean up clips without launching a heavy video editor or uploading files to
+            random websites.{" "}
             <span className="text-foreground font-medium">ffez</span> gives you
-            human-readable commands for stripping audio, converting tracks, and
-            formatting clips.
+            fast, simple commands that run entirely on your own computer.
           </p>
 
           {/* Hero CTA Action Buttons */}

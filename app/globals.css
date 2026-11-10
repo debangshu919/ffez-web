@@ -123,6 +123,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
   html {
     @apply font-sans;
   }
