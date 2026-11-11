@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -14,7 +13,6 @@ import {
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { FullWidthDivider } from "@/components/full-width-divider";
 import { RotatingText, type RotatingTextRef } from "@/components/ui/rotating-text";
 
@@ -22,6 +20,7 @@ interface PlatformData {
   name: string;
   icon: IconDefinition;
   flag: string;
+  flagColor: string;
   spec: string;
   accentClass: string;
 }
@@ -225,7 +224,7 @@ function IntegrationCard({ row, col, platform, onHover }: IntegrationCardProps) 
       {/* Floating Tooltip Hover Badge */}
       <div className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 whitespace-nowrap">
         <div className="rounded border border-border bg-popover/95 backdrop-blur-md px-2 py-0.5 text-[11px] font-mono text-popover-foreground shadow-md flex items-center gap-1.5">
-          <span className="font-semibold text-primary">{platform.flag}</span>
+          <span className={cn("font-semibold", platform.flagColor)}>{platform.flag}</span>
           <span className="text-muted-foreground/80">({platform.spec})</span>
         </div>
       </div>
@@ -243,6 +242,7 @@ const TILES: readonly TileData[] = [
       name: "Discord",
       icon: faDiscord,
       flag: "--target discord",
+      flagColor: "text-[#5865F2]",
       spec: "25MB cap",
       accentClass: "hover:border-[#5865F2]/60 hover:text-[#5865F2]",
     },
@@ -254,6 +254,7 @@ const TILES: readonly TileData[] = [
       name: "X (Twitter)",
       icon: faXTwitter,
       flag: "--target twitter",
+      flagColor: "text-foreground",
       spec: "512MB / 140s",
       accentClass: "hover:border-foreground/60 hover:text-foreground",
     },
@@ -268,6 +269,7 @@ const TILES: readonly TileData[] = [
       name: "YouTube",
       icon: faYoutube,
       flag: "--target youtube",
+      flagColor: "text-[#FF0000]",
       spec: "Web stream",
       accentClass: "hover:border-[#FF0000]/60 hover:text-[#FF0000]",
     },
@@ -279,8 +281,9 @@ const TILES: readonly TileData[] = [
       name: "Slack",
       icon: faSlack,
       flag: "--target slack",
+      flagColor: "text-[#EBB12C]",
       spec: "Silent demo",
-      accentClass: "hover:border-[#EBB12C]/60 hover:text-[#E01E5A]",
+      accentClass: "hover:border-[#EBB12C]/60 hover:text-[#EBB12C]",
     },
   },
 
@@ -292,6 +295,7 @@ const TILES: readonly TileData[] = [
       name: "WhatsApp",
       icon: faWhatsapp,
       flag: "--target whatsapp",
+      flagColor: "text-[#25D366]",
       spec: "<16MB limit",
       accentClass: "hover:border-[#25D366]/60 hover:text-[#25D366]",
     },
@@ -307,8 +311,9 @@ const TILES: readonly TileData[] = [
       name: "Instagram",
       icon: faInstagram,
       flag: "--target instagram",
+      flagColor: "text-[#FD01BF]",
       spec: "9:16 vertical",
-      accentClass: "hover:border-[#FD01BF]/60 hover:text-[#E4405F]",
+      accentClass: "hover:border-[#FD01BF]/60 hover:text-[#FD01BF]",
     },
   },
   {
@@ -318,8 +323,9 @@ const TILES: readonly TileData[] = [
       name: "TikTok",
       icon: faTiktok,
       flag: "--target tiktok",
+      flagColor: "text-[#25F4EE]",
       spec: "9:16 vertical",
-      accentClass: "hover:border-[#25F4EE]/60 hover:text-[#FE2C55]",
+      accentClass: "hover:border-[#25F4EE]/60 hover:text-[#25F4EE]",
     },
   },
 
