@@ -4,25 +4,17 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  Moon02Icon,
-  StarIcon,
-  Sun03Icon,
-} from "@hugeicons/core-free-icons";
+import { StarIcon } from "@hugeicons/core-free-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Crosshair } from "@/components/crosshair";
 import { DiagonalHatch } from "@/components/diagonal-hatch";
 import {
-  APP_VERSION,
   DEFAULT_GITHUB_STARS,
   GITHUB_API_REPO_URL,
   GITHUB_DOCS_URL,
   GITHUB_REPO_URL,
-  THEME_STORAGE_KEY,
 } from "@/lib/constants";
-
-type Theme = "dark" | "light";
 
 const NAV_LINKS = [
   { href: "#features", label: "Features" },
@@ -30,64 +22,7 @@ const NAV_LINKS = [
   { href: "#comparison", label: "Comparison" },
 ] as const;
 
-function subscribe(callback: () => void) {
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "class"
-      ) {
-        callback();
-      }
-    }
-  });
-
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-
-  const handleStorage = (event: StorageEvent) => {
-    if (event.key === THEME_STORAGE_KEY) {
-      const isDark = event.newValue !== "light";
-      document.documentElement.classList.toggle("dark", isDark);
-      callback();
-    }
-  };
-
-  window.addEventListener("storage", handleStorage);
-
-  return () => {
-    observer.disconnect();
-    window.removeEventListener("storage", handleStorage);
-  };
-}
-
-function getSnapshot(): Theme {
-  return document.documentElement.classList.contains("dark") ? "dark" : "light";
-}
-
-function getServerSnapshot(): Theme {
-  return "dark";
-}
-
-function toggleTheme() {
-  const currentlyDark = document.documentElement.classList.contains("dark");
-  const nextTheme: Theme = currentlyDark ? "light" : "dark";
-  document.documentElement.classList.toggle("dark", nextTheme === "dark");
-  try {
-    localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-  } catch {
-    // Ignore storage errors in restricted environments
-  }
-}
-
 export function Navbar() {
-  const theme = React.useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot
-  );
   const [stars, setStars] = React.useState<number>(DEFAULT_GITHUB_STARS);
 
   React.useEffect(() => {
@@ -107,65 +42,27 @@ export function Navbar() {
     return () => controller.abort();
   }, []);
 
-  React.useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.repeat || event.ctrlKey || event.metaKey || event.altKey) {
-        return;
-      }
-
-      const target = event.target as HTMLElement | null;
-      if (
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.tagName === "SELECT" ||
-          target.isContentEditable)
-      ) {
-        return;
-      }
-
-      if (event.key === "d" || event.key === "D") {
-        event.preventDefault();
-        toggleTheme();
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
     <>
-      {/* Main Navbar Header with Extended Horizontal Line */}
-      <header className="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md">
+      {/* Main Navbar Header - Locked to Dark Mode */}
+      <header className="dark sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md">
         <div className="mx-auto flex h-14 sm:h-16 max-w-6xl relative border-x border-border items-center justify-between px-4 sm:px-6">
-          {/* Left: Minimal Wordmark Logo & Version Badge */}
-          <div className="flex items-center gap-3">
+          {/* Left: Minimal Wordmark Logo */}
+          <div className="flex items-center">
             <Link
               href="/"
               className="flex items-center transition-opacity hover:opacity-85 focus-visible:outline-hidden"
               aria-label="ffez home"
             >
               <Image
-                src="/light-mode-logo.svg"
-                alt="ffez"
-                width={116}
-                height={80}
-                className="h-8 md:h-9 w-auto block dark:hidden object-contain"
-                fetchPriority="high"
-              />
-              <Image
                 src="/dark-mode-logo.svg"
                 alt="ffez"
                 width={116}
                 height={80}
-                className="h-8 md:h-9 w-auto hidden dark:block object-contain"
-                fetchPriority="high"
+                className="h-8 md:h-9 w-auto object-contain"
+                priority
               />
             </Link>
-            <span className="hidden sm:inline-flex items-center border border-border/80 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground select-none">
-              {APP_VERSION}
-            </span>
           </div>
 
           {/* Center: Technical Nav Links with '+' indicators */}
@@ -192,22 +89,8 @@ export function Navbar() {
             </Link>
           </nav>
 
-          {/* Right: Theme Toggle (left) & GitHub Stars CTA (right) */}
+          {/* Right: GitHub Stars CTA */}
           <div className="flex items-center gap-2 sm:gap-2.5">
-            <button
-              type="button"
-              onClick={toggleTheme}
-              aria-label="Toggle theme (Press D)"
-              title="Toggle theme (Press D)"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-none text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50 active:scale-95 cursor-pointer focus-visible:outline-hidden"
-            >
-              {theme === "dark" ? (
-                <HugeiconsIcon icon={Sun03Icon} className="h-4 w-4" />
-              ) : (
-                <HugeiconsIcon icon={Moon02Icon} className="h-4 w-4" />
-              )}
-            </button>
-
             <a
               href={GITHUB_REPO_URL}
               target="_blank"
@@ -237,7 +120,7 @@ export function Navbar() {
       </header>
 
       {/* Diagonal Striped Hatched Bar with Extended Horizontal Line */}
-      <DiagonalHatch />
+      <DiagonalHatch className="dark" />
     </>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
-import { THEME_STORAGE_KEY } from "@/lib/constants";
 import "./globals.css";
 
 const rondel = localFont({
@@ -28,26 +27,13 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-const themeInitScript = `
-(function() {
-  try {
-    var stored = localStorage.getItem('${THEME_STORAGE_KEY}');
-    document.documentElement.classList.toggle('dark', stored !== 'light');
-  } catch (e) {}
-})();
-`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`dark ${rondel.variable} ${rondel.className} h-full antialiased`}
-      suppressHydrationWarning
+      className={`${rondel.variable} ${rondel.className} h-full antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <Navbar />
         {children}
       </body>

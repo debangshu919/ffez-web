@@ -62,15 +62,15 @@ const DOT_GRID_TRANSITION = {
 
 const DOT_GRID_STYLE: React.CSSProperties = {
   backgroundImage:
-    "radial-gradient(circle, rgba(255, 255, 255, 0.45) 1.2px, transparent 1.2px)",
-  backgroundSize: "20px 20px",
+    "radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px)",
+  backgroundSize: "24px 24px",
 };
 
 const PRIMARY_ORB_ANIMATE = {
   x: [-30, 30, -30],
   y: [-18, 18, -18],
   scale: [1, 1.15, 1],
-  opacity: [0.35, 0.55, 0.35],
+  opacity: [0.5, 0.8, 0.5],
 };
 
 const PRIMARY_ORB_TRANSITION = {
@@ -83,7 +83,7 @@ const SECONDARY_ORB_ANIMATE = {
   x: [25, -25, 25],
   y: [15, -15, 15],
   scale: [1.1, 0.95, 1.1],
-  opacity: [0.2, 0.4, 0.2],
+  opacity: [0.3, 0.6, 0.3],
 };
 
 const SECONDARY_ORB_TRANSITION = {
@@ -119,7 +119,7 @@ const HalftoneMatrix = React.memo(function HalftoneMatrix({
       {dots.map((dot) => (
         <motion.span
           key={dot.id}
-          className="h-1.5 w-1.5 rounded-full bg-white transition-colors"
+          className="h-1.5 w-1.5 rounded-full bg-primary/40 transition-colors"
           animate={dot.animate}
           transition={dot.transition}
         />
@@ -130,12 +130,12 @@ const HalftoneMatrix = React.memo(function HalftoneMatrix({
 
 export function HeroPreview() {
   return (
-    <section className="w-full relative overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-green-950 dark:from-emerald-700 dark:via-emerald-800 dark:to-zinc-950">
+    <section className="w-full relative overflow-hidden bg-background">
       {/* Subtle Animated Background Dot Grid Drift */}
       <motion.div
         animate={DOT_GRID_ANIMATE}
         transition={DOT_GRID_TRANSITION}
-        className="absolute inset-0 pointer-events-none select-none opacity-25"
+        className="absolute inset-0 pointer-events-none select-none opacity-40"
         style={DOT_GRID_STYLE}
       />
 
@@ -143,23 +143,23 @@ export function HeroPreview() {
       <motion.div
         animate={PRIMARY_ORB_ANIMATE}
         transition={PRIMARY_ORB_TRANSITION}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-emerald-300/40 dark:bg-emerald-400/30 blur-[110px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[380px] bg-primary/25 blur-[120px] rounded-full pointer-events-none"
       />
 
-      {/* Layer 2: Animated Secondary Mint / Teal Accent Glow Orb */}
+      {/* Layer 2: Animated Secondary Mint / Emerald Accent Glow Orb */}
       <motion.div
         animate={SECONDARY_ORB_ANIMATE}
         transition={SECONDARY_ORB_TRANSITION}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[320px] bg-teal-200/30 dark:bg-teal-400/20 blur-[90px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[320px] bg-emerald-500/15 blur-[90px] rounded-full pointer-events-none"
       />
 
-      {/* Halftone Matrix Pattern with Staggered Radar Wave: Top-Left */}
-      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 pointer-events-none">
+      {/* Halftone Matrix Pattern with Staggered Radar Wave: Top-Left (Desktop/Tablet Flank) */}
+      <div className="hidden md:block absolute top-6 left-6 pointer-events-none">
         <HalftoneMatrix />
       </div>
 
-      {/* Halftone Matrix Pattern with Staggered Radar Wave: Top-Right */}
-      <div className="absolute top-4 right-4 sm:top-6 sm:right-6 pointer-events-none rotate-90 sm:rotate-0">
+      {/* Halftone Matrix Pattern with Staggered Radar Wave: Top-Right (Desktop/Tablet Flank) */}
+      <div className="hidden md:block absolute top-6 right-6 pointer-events-none">
         <HalftoneMatrix className="[transform:scaleX(-1)]" />
       </div>
 

@@ -54,6 +54,7 @@ export interface RotatingTextProps
     'children' | 'transition' | 'initial' | 'animate' | 'exit'
   > {
   texts: string[];
+  colors?: string[];
   transition?: Transition;
   initial?: boolean | Target | VariantLabels;
   animate?: boolean | VariantLabels | TargetAndTransition;
@@ -147,6 +148,7 @@ const readableText = (color: string): string | undefined => {
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
+    colors,
     transition,
     initial,
     animate,
@@ -330,6 +332,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
     ? { ...style, width, backgroundColor: highlightColor, color: readableText(highlightColor) ?? style?.color }
     : style;
 
+  const itemColor = colors?.[activeIndex];
+
   const presence = (
     <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
       <motion.span
@@ -337,6 +341,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
         className={cn(splitBy === 'lines' ? 'flex flex-col w-full' : 'flex flex-wrap whitespace-pre-wrap relative')}
         layout={!highlight}
         aria-hidden="true"
+        style={itemColor ? { color: itemColor } : undefined}
       >
         {elements.map((wordObj, wordIndex, array) => {
           const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
