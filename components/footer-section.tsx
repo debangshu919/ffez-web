@@ -10,7 +10,6 @@ import {
   faDiscord,
   faRust,
 } from "@fortawesome/free-brands-svg-icons";
-import { Crosshair } from "@/components/crosshair";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -62,7 +61,7 @@ const RESOURCES_LINKS: readonly NavLink[] = [
 
 const PROJECT_LINKS: readonly NavLink[] = [
   { title: "Rust Architecture", href: "#features" },
-  { title: "Developer FAQ", href: "#features" },
+  { title: "Developer FAQ", href: "#faq" },
   {
     title: "MIT License",
     href: `${GITHUB_REPO_URL}/blob/main/LICENSE-MIT`,
@@ -183,7 +182,8 @@ export function FooterSection() {
         <div className="mt-4 pt-6 border-t border-border/70 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground font-sans relative z-10">
           {/* Left Copyright & Legal */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 text-center sm:text-left">
-            <span>&copy; 2026 ffez. All rights reserved.</span>
+            <span>&copy; 2026&nbsp;
+              <Link href="https://debangshu.dev" target="_blank" className="text-gray-300">Debangshu</Link>. All rights reserved.</span>
             <span className="hidden sm:inline text-muted-foreground/30">&middot;</span>
             <span className="hidden sm:inline text-muted-foreground/30">&middot;</span>
             <Link
@@ -204,12 +204,6 @@ export function FooterSection() {
             </Link>
           </div>
         </div>
-
-        {/* Corner CAD Crosshairs */}
-        <Crosshair type="plus" className="-top-[7px] -left-[7px]" />
-        <Crosshair type="plus" className="-top-[7px] -right-[7px]" />
-        <Crosshair type="minus" className="-bottom-[7px] -left-[7px]" />
-        <Crosshair type="minus" className="-bottom-[7px] -right-[7px]" />
       </div>
     </footer>
   );

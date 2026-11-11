@@ -20,6 +20,7 @@ const NAV_LINKS = [
   { href: "#features", label: "Features" },
   { href: "#scenarios", label: "Commands" },
   { href: "#comparison", label: "Comparison" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 
 export function Navbar() {

@@ -7,13 +7,15 @@ import { Integrations } from "@/components/integrations";
 import { RotatingText } from "@/components/ui/rotating-text";
 import { DitherField } from "@/components/ui/dither-field";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import { FeaturesSection } from "@/components/features-section";
+import { FeatureSection } from "@/components/feature-section";
+import { FaqSection } from "@/components/faq-section";
+import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 import { GITHUB_DOCS_URL } from "@/lib/constants";
 
 export default function Home() {
   return (
-    <div className="w-full relative flex-1 flex flex-col">
+    <div className="dark w-full relative flex-1 flex flex-col bg-background text-foreground">
       {/* Hero Section - Permanently Dark Mode */}
       <section className="dark w-full bg-background text-foreground relative flex flex-col">
         {/* Main Framed Hero Text Container Continuous with Navbar Guidelines */}
@@ -82,8 +84,27 @@ export default function Home() {
         <DiagonalHatch className="dark" />
       </section>
 
-      {/* Features Section - Light Mode Section */}
-      <FeaturesSection />
+      {/* Core Architectural Guarantees - Efferd Features-3 */}
+      <section
+        id="features"
+        className="w-full border-b border-border bg-background text-foreground relative"
+      >
+        <FeatureSection />
+      </section>
+
+      {/* Frequently Asked Questions */}
+      <section
+        id="faq"
+        className="w-full border-b border-border bg-background text-foreground relative"
+      >
+        <DiagonalHatch className="dark" showTopCrosshairs showBottomCrosshairs />
+        <FaqSection />
+      </section>
+
+      {/* Final Call to Action - Efferd Cta-12 */}
+      <section className="w-full bg-background text-foreground relative">
+        <CtaSection />
+      </section>
 
       {/* Footer Section - Efferd Footer-2 */}
       <Footer />
