@@ -40,9 +40,7 @@ export function FeatureSection({
 			{/* Section Header */}
 			<div className="max-w-3xl space-y-3 px-4 sm:px-6">
 				<div className="inline-flex items-center gap-2 border border-border/80 bg-muted/50 px-2.5 py-1 text-[11px] font-mono font-medium text-primary tracking-wider uppercase">
-					<span>Architecture</span>
-					<span className="text-muted-foreground/60">/</span>
-					<span>Core Guarantees</span>
+					<span>Why use ffez</span>
 				</div>
 
 				<h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-[1.15]">

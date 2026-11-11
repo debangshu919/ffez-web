@@ -45,6 +45,15 @@ export function CtaSection({
 }: CtaSectionProps) {
   const [activeMethod, setActiveMethod] = React.useState<InstallMethod["id"]>("cargo");
   const [copied, setCopied] = React.useState(false);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const currentMethod =
     INSTALL_METHODS.find((m) => m.id === activeMethod) || INSTALL_METHODS[0];
@@ -53,7 +62,13 @@ export function CtaSection({
     try {
       await navigator.clipboard.writeText(currentMethod.command);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setCopied(false);
+        timeoutRef.current = null;
+      }, 2000);
     } catch {
       // Fallback
     }
@@ -93,6 +108,9 @@ export function CtaSection({
                 onClick={() => {
                   setActiveMethod(method.id);
                   setCopied(false);
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                  }
                 }}
                 className={cn(
                   "px-3 py-1 transition-all cursor-pointer select-none",

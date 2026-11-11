@@ -10,7 +10,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { FeatureSection } from "@/components/feature-section";
 import { FaqSection } from "@/components/faq-section";
 import { CtaSection } from "@/components/cta-section";
-import { Footer } from "@/components/footer";
+import { FooterSection as Footer } from "@/components/footer-section";
 import { GITHUB_DOCS_URL } from "@/lib/constants";
 
 export default function Home() {

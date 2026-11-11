@@ -77,10 +77,22 @@ export function Integrations() {
   const [copied, setCopied] = React.useState(false);
   const [hoveredPlatform, setHoveredPlatform] = React.useState<string | null>(null);
   const rotatingRef = React.useRef<RotatingTextRef>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handlePlatformHover = React.useCallback((name: string | null) => {
     setHoveredPlatform(name);
     setCopied(false);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     if (name && PLATFORM_INDEX_MAP[name] !== undefined) {
       rotatingRef.current?.jumpTo(PLATFORM_INDEX_MAP[name]);
     } else {
@@ -97,7 +109,13 @@ export function Integrations() {
   const copyCommand = () => {
     navigator.clipboard.writeText(currentCommand);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setCopied(false);
+      timeoutRef.current = null;
+    }, 2000);
   };
 
   return (
