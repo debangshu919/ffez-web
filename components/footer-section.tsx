@@ -27,7 +27,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: "X (Twitter)",
-    href: "https://x.com/debangshu919",
+    href: "https://x.com/itzchromavision",
     icon: faXTwitter,
     ariaLabel: "Follow ffez on X",
   },
