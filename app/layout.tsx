@@ -11,9 +11,9 @@ const rondel = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ffez — Never look up FFmpeg flags again",
+  title: "ffez | Simple FFmpeg CLI to Mute, Trim, and Convert Video",
   description:
-    "An open-source, minimal FFmpeg CLI wrapper written in Rust. Extract audio, mute screen recordings, and format media with human-readable subcommands and instant --dry-run previews.",
+    "Mute screen recordings, extract audio, and format video without memorizing FFmpeg flags. Fast, local Rust CLI with plain subcommands and --dry-run previews.",
   icons: {
     icon: [
       { url: "/favicon.ico" },

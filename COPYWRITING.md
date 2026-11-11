@@ -9,10 +9,10 @@
 ## 1. Metadata & SEO
 
 ### Page Title
-`ffez — Never look up FFmpeg flags again`
+`ffez | Simple FFmpeg CLI to Mute, Trim, and Convert Video`
 
 ### Meta Description
-`An open-source, minimal FFmpeg CLI wrapper written in Rust. Extract audio, mute screen recordings, and format media with human-readable subcommands and instant --dry-run previews.`
+`Mute screen recordings, extract audio, and format video without memorizing FFmpeg flags. Fast, local Rust CLI with plain subcommands and --dry-run previews.`
 
 ### OpenGraph / Social Sharing Card
 - **OG Title:** `ffez: The Human-Readable CLI for FFmpeg`
